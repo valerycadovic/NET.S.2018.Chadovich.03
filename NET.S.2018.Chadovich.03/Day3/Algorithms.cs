@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
 
     /// <summary>
     /// Includes a set of basic algorithms
@@ -55,16 +56,20 @@
         /// Looks for the next bigger number which consists of digits of preset number
         /// </summary>
         /// <param name="number">Preset number</param>
+        /// <param name="delay">Returns milliseconds elapse while method working</param>
         /// <returns>Result number if it exists or null if preset number is already the biggest</returns>
-        public static int? FindNextBiggerNumber(int number)
+        public static int? FindNextBiggerNumber(int number, out long delay)
         {
             if (number < 0)
             {
                 throw new ArgumentOutOfRangeException($"{nameof(number)} must be positive!");
             }
 
+            Stopwatch stopwatch = Stopwatch.StartNew();
+
             if (number <= 11)
             {
+                delay = stopwatch.ElapsedMilliseconds;
                 return null;
             }
 
@@ -73,11 +78,16 @@
 
             if (index == null)
             {
+                delay = stopwatch.ElapsedMilliseconds;
                 return null;
             }
 
             int start = index.Value;
-            return MapNumber(digits, start);
+            
+            var result = MapNumber(digits, start);
+
+            delay = stopwatch.ElapsedMilliseconds;
+            return result;
         }
         #endregion
 

@@ -37,11 +37,11 @@
         [TestCase(10, ExpectedResult = null)]
         [TestCase(20, ExpectedResult = null)]
         public int? Can_FindNextBiggestNumber(int number) =>
-            Algorithms.FindNextBiggerNumber(number);
+            Algorithms.FindNextBiggerNumber(number, out _);
 
         [TestCase(-15)]
         public void FindNextBiggestNumber(int number) =>
-            Assert.Throws<ArgumentOutOfRangeException>(() => Algorithms.FindNextBiggerNumber(number));
+            Assert.Throws<ArgumentOutOfRangeException>(() => Algorithms.FindNextBiggerNumber(number, out _));
         #endregion
     }
 }
