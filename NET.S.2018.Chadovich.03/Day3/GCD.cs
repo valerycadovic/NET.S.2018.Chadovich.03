@@ -9,6 +9,7 @@
     /// </summary>
     public static class GCD
     {
+        #region Public API
         /// <summary>
         /// Computing GCD using Euclid's algorithm
         /// </summary>
@@ -61,7 +62,9 @@
             func(number1, number2, numbers);
             return stopwatch.ElapsedMilliseconds;
         }
+        #endregion
 
+        #region Private Methods
         /// <summary>
         /// Computes GCD of n numbers
         /// </summary>
@@ -136,5 +139,6 @@
 
             return Gcd(number1, number2);
         }
+        #endregion
     }
 }
