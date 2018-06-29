@@ -6,6 +6,7 @@
     [TestFixture]
     public class Algorithms_Test
     {
+        #region Root Tests
         [TestCase(1, 5, 0.000_001, 1)]
         [TestCase(8, 3, 0.0001, 2)]
         [TestCase(0.001, 3, 0.0001, 0.1)]
@@ -22,5 +23,25 @@
         [TestCase(0.01, 2, -1)]
         public void RealRoot_Throws_ArgumentOutOfRangeException(double number, int power, double precision) =>
             Assert.Throws<ArgumentOutOfRangeException>(() => Algorithms.RealRoot(number, power, precision));
+        #endregion
+
+        #region FindNextBiggestNumber Tests
+        [TestCase(12, ExpectedResult = 21)]
+        [TestCase(513, ExpectedResult = 531)]
+        [TestCase(2017, ExpectedResult = 2071)]
+        [TestCase(414, ExpectedResult = 441)]
+        [TestCase(144, ExpectedResult = 414)]
+        [TestCase(1234321, ExpectedResult = 1241233)]
+        [TestCase(1234126, ExpectedResult = 1234162)]
+        [TestCase(3456432, ExpectedResult = 3462345)]
+        [TestCase(10, ExpectedResult = null)]
+        [TestCase(20, ExpectedResult = null)]
+        public int? Can_FindNextBiggestNumber(int number) =>
+            Algorithms.FindNextBiggerNumber(number);
+
+        [TestCase(-15)]
+        public void FindNextBiggestNumber(int number) =>
+            Assert.Throws<ArgumentOutOfRangeException>(() => Algorithms.FindNextBiggerNumber(number));
+        #endregion
     }
 }
