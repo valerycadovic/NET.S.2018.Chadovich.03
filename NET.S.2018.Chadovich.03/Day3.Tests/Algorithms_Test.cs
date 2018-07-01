@@ -1,6 +1,7 @@
 ﻿namespace Day3.Tests
 {
     using System;
+    using System.Diagnostics;
     using NUnit.Framework;
 
     [TestFixture]
@@ -36,8 +37,14 @@
         [TestCase(3456432, ExpectedResult = 3462345)]
         [TestCase(10, ExpectedResult = null)]
         [TestCase(20, ExpectedResult = null)]
-        public int? Can_FindNextBiggestNumber(int number) =>
-            Algorithms.FindNextBiggerNumber(number, out _);
+        public int? Can_FindNextBiggestNumber(int number)
+        {
+            var result = Algorithms.FindNextBiggerNumber(number, out long time);
+
+            Debug.WriteLine($"{nameof(Can_FindNextBiggestNumber)}: time is {time}");
+
+            return result;
+        }
 
         [TestCase(-15)]
         public void FindNextBiggestNumber(int number) =>
