@@ -12,53 +12,97 @@
         /// <summary>
         /// Computing GCD using Euclid's algorithm
         /// </summary>
-        /// <param name="number1">first number is required</param>
-        /// <param name="number2">second number is required</param>
-        /// <param name="numbers">optional parameters</param>
-        /// <returns>GCD of n numbers</returns>
-        public static int Euclid(int number1, int number2, params int[] numbers)
+        /// <param name="number1">first number</param>
+        /// <param name="number2">second number</param>
+        /// <returns>GCD of 2 numbers</returns>
+        public static int Euclid(int number1, int number2)
         {
-            int gcd2 = GcdClassic(number1, number2);
+            return GcdClassic(number1, number2);
+        }
 
-            if (numbers.Length == 0)
+        /// <summary>
+        /// Computing GCD using Euclid's algorithm
+        /// </summary>
+        /// <param name="number1">first number</param>
+        /// <param name="number2">second number</param>
+        /// <param name="number3">third number</param>
+        /// <returns>GCD of 3 numbers</returns>
+        public static int Euclid(int number1, int number2, int number3)
+        {
+            return GcdClassic(number1, GcdClassic(number2, number3));
+        }
+
+        /// <summary>
+        /// Computing GCD using Euclid's algorithm
+        /// </summary>
+        /// <param name="numbers">optional parameters</param>
+        /// <exception cref="ArgumentException">
+        /// Throws when count of params is less than 2
+        /// </exception>
+        /// <returns>GCD of n numbers</returns>
+        public static int Euclid(params int[] numbers)
+        {
+            if (numbers.Length < 2)
             {
-                return gcd2;
+                throw new ArgumentException($"{nameof(Euclid)}: {nameof(numbers.Length)} must be more than two");
             }
-            
-            return Find(gcd2, numbers, GcdClassic);
+
+            return Find(numbers, GcdClassic);
         }
 
         /// <summary>
         /// Computing GCD using Stein's algorithm
         /// </summary>
-        /// <param name="number1">first number is required</param>
-        /// <param name="number2">second number is required</param>
-        /// <param name="numbers">optional parameters</param>
-        /// <returns>GCD of n numbers</returns>
-        public static int Stein(int number1, int number2, params int[] numbers)
+        /// <param name="number1">first number</param>
+        /// <param name="number2">second number</param>
+        /// <returns>GCD of 2 numbers</returns>
+        public static int Stein(int number1, int number2)
         {
-            int gcd2 = GcdBinary(number1, number2);
-
-            if (numbers.Length == 0)
-            {
-                return gcd2;
-            }
-
-            return Find(gcd2, numbers, GcdBinary);
+            return GcdBinary(number1, number2);
         }
 
         /// <summary>
-        /// Computing GCD using Euclid's algorithm
+        /// Computing GCD using Stein's algorithm
+        /// </summary>
+        /// <param name="number1">first number</param>
+        /// <param name="number2">second number</param>
+        /// <param name="number3">third number</param>
+        /// <returns>GCD of 3 numbers</returns>
+        public static int Stein(int number1, int number2, int number3)
+        {
+            return GcdBinary(number1, GcdBinary(number2, number3));
+        }
+
+        /// <summary>
+        /// Computing GCD using Stein's algorithm
+        /// </summary>
+        /// <param name="numbers">optional parameters</param>
+        /// <exception cref="ArgumentException">
+        /// Throws when count of params is less than 2
+        /// </exception>
+        /// <returns>GCD of n numbers</returns>
+        public static int Stein(params int[] numbers)
+        {
+            if (numbers.Length < 2)
+            {
+                throw new ArgumentException($"{nameof(Euclid)}: {nameof(numbers.Length)} must be more than two");
+            }
+
+            return Find(numbers, GcdBinary);
+        }
+        
+        /// <summary>
+        /// Computing GCD using Stein's algorithm
         /// </summary>
         /// <param name="delay">Returns milliseconds elapse while method working</param>
         /// <param name="number1">required argument 1</param>
         /// <param name="number2">required argument 2</param>
         /// <param name="numbers">optional arguments</param>
         /// <returns>GCD of n numbers</returns>
-        public static int Stein(out long delay, int number1, int number2, params int[] numbers)
+        public static int Stein(out long delay, params int[] numbers)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
-            var result = Stein(number1, number2, numbers);
+            var result = Stein(numbers);
             delay = stopwatch.ElapsedMilliseconds;
             return result;
         }
@@ -71,10 +115,10 @@
         /// <param name="number2">required argument 2</param>
         /// <param name="numbers">optional arguments</param>
         /// <returns>GCD of n numbers</returns>
-        public static int Euclid(out long delay, int number1, int number2, params int[] numbers)
+        public static int Euclid(out long delay, params int[] numbers)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
-            var result = Euclid(number1, number2, numbers);
+            var result = Euclid(numbers);
             delay = stopwatch.ElapsedMilliseconds;
             return result;
         }
@@ -84,15 +128,14 @@
         /// <summary>
         /// Computes GCD of n numbers
         /// </summary>
-        /// <param name="a">start value</param>
         /// <param name="numbers">numbers to be handled</param>
         /// <param name="gcd">searching GCD algorithm</param>
         /// <returns>GCD of n numbers</returns>
-        private static int Find(int a, int[] numbers, Func<int, int, int> gcd)
+        private static int Find(int[] numbers, Func<int, int, int> gcd)
         {
             int FindGcd(int i, int acc) => i == numbers.Length ? acc : FindGcd(i + 1, gcd(acc, numbers[i]));
 
-            return FindGcd(0, a);
+            return FindGcd(0, 0);
         }
 
         /// <summary>
