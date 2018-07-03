@@ -16,6 +16,12 @@
         /// <param name="number">preset number</param>
         /// <param name="power">root degree</param>
         /// <param name="precision">accuracy of measurement</param>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown when:
+        ///     precision is out of range between 0 and 1
+        ///     exponent is negative
+        ///     exponent is even if number is negative
+        /// </exception>
         /// <returns>nth root as real number</returns>
         public static double RealRoot(double number, int power, double precision)
         {
@@ -57,6 +63,7 @@
         /// </summary>
         /// <param name="number">Preset number</param>
         /// <param name="delay">Returns milliseconds elapse while method working</param>
+        /// <exception cref="ArgumentOutOfRangeException">Throws when number is negative</exception>
         /// <returns>Result number if it exists or null if preset number is already the biggest</returns>
         public static int? FindNextBiggerNumber(int number, out long delay)
         {

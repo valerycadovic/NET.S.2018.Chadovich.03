@@ -1,7 +1,6 @@
 ﻿namespace Day3
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics;
 
     /// <summary>
@@ -49,18 +48,35 @@
         }
 
         /// <summary>
-        /// Gets time elapsed to computing
+        /// Computing GCD using Euclid's algorithm
         /// </summary>
-        /// <param name="func">function to be computed</param>
+        /// <param name="delay">Returns milliseconds elapse while method working</param>
         /// <param name="number1">required argument 1</param>
         /// <param name="number2">required argument 2</param>
         /// <param name="numbers">optional arguments</param>
         /// <returns>GCD of n numbers</returns>
-        public static long TimeElapsed(Func<int, int, int[], int> func, int number1, int number2, params int[] numbers)
+        public static int Stein(out long delay, int number1, int number2, params int[] numbers)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
-            func(number1, number2, numbers);
-            return stopwatch.ElapsedMilliseconds;
+            var result = Stein(number1, number2, numbers);
+            delay = stopwatch.ElapsedMilliseconds;
+            return result;
+        }
+
+        /// <summary>
+        /// Computing GCD using Euclid's algorithm
+        /// </summary>
+        /// <param name="delay">Returns milliseconds elapse while method working</param>
+        /// <param name="number1">required argument 1</param>
+        /// <param name="number2">required argument 2</param>
+        /// <param name="numbers">optional arguments</param>
+        /// <returns>GCD of n numbers</returns>
+        public static int Euclid(out long delay, int number1, int number2, params int[] numbers)
+        {
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            var result = Euclid(number1, number2, numbers);
+            delay = stopwatch.ElapsedMilliseconds;
+            return result;
         }
         #endregion
 
