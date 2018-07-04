@@ -23,6 +23,21 @@
         /// <summary>
         /// Computing GCD using Euclid's algorithm
         /// </summary>
+        /// <param name="delay">Returns milliseconds elapse while method working</param>
+        /// <param name="number1">first number</param>
+        /// <param name="number2">second number</param>
+        /// <returns>GCD of n numbers</returns>
+        public static int Euclid(out long delay, int number1, int number2)
+        {
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            var result = Euclid(number1, number2);
+            delay = stopwatch.ElapsedMilliseconds;
+            return result;
+        }
+
+        /// <summary>
+        /// Computing GCD using Euclid's algorithm
+        /// </summary>
         /// <param name="number1">first number</param>
         /// <param name="number2">second number</param>
         /// <param name="number3">third number</param>
@@ -35,9 +50,25 @@
         /// <summary>
         /// Computing GCD using Euclid's algorithm
         /// </summary>
+        /// <param name="delay">Returns milliseconds elapse while method working</param>
+        /// <param name="number1">first number</param>
+        /// <param name="number2">second number</param>
+        /// <param name="number3">third number</param>
+        /// <returns>GCD of n numbers</returns>
+        public static int Euclid(out long delay, int number1, int number2, int number3)
+        {
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            var result = Stein(number1, number2, number3);
+            delay = stopwatch.ElapsedMilliseconds;
+            return result;
+        }
+
+        /// <summary>
+        /// Computing GCD using Euclid's algorithm
+        /// </summary>
         /// <param name="numbers">optional parameters</param>
         /// <exception cref="ArgumentException">
-        /// Throws when count of params is less than 2
+        /// Throws when count of parameters is less than 2
         /// </exception>
         /// <returns>GCD of n numbers</returns>
         public static int Euclid(params int[] numbers)
@@ -64,6 +95,21 @@
         /// <summary>
         /// Computing GCD using Stein's algorithm
         /// </summary>
+        /// <param name="delay">Returns milliseconds elapse while method working</param>
+        /// <param name="number1">first number</param>
+        /// <param name="number2">second number</param>
+        /// <returns>GCD of n numbers</returns>
+        public static int Stein(out long delay, int number1, int number2)
+        {
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            var result = Stein(number1, number2);
+            delay = stopwatch.ElapsedMilliseconds;
+            return result;
+        }
+
+        /// <summary>
+        /// Computing GCD using Stein's algorithm
+        /// </summary>
         /// <param name="number1">first number</param>
         /// <param name="number2">second number</param>
         /// <param name="number3">third number</param>
@@ -76,9 +122,25 @@
         /// <summary>
         /// Computing GCD using Stein's algorithm
         /// </summary>
+        /// <param name="delay">Returns milliseconds elapse while method working</param>
+        /// <param name="number1">first number</param>
+        /// <param name="number2">second number</param>
+        /// <param name="number3">third number</param>
+        /// <returns>GCD of n numbers</returns>
+        public static int Stein(out long delay, int number1, int number2, int number3)
+        {
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            var result = Stein(number1, number2, number3);
+            delay = stopwatch.ElapsedMilliseconds;
+            return result;
+        }
+
+        /// <summary>
+        /// Computing GCD using Stein's algorithm
+        /// </summary>
         /// <param name="numbers">optional parameters</param>
         /// <exception cref="ArgumentException">
-        /// Throws when count of params is less than 2
+        /// Throws when count of parameters is less than 2
         /// </exception>
         /// <returns>GCD of n numbers</returns>
         public static int Stein(params int[] numbers)
@@ -95,8 +157,6 @@
         /// Computing GCD using Stein's algorithm
         /// </summary>
         /// <param name="delay">Returns milliseconds elapse while method working</param>
-        /// <param name="number1">required argument 1</param>
-        /// <param name="number2">required argument 2</param>
         /// <param name="numbers">optional arguments</param>
         /// <returns>GCD of n numbers</returns>
         public static int Stein(out long delay, params int[] numbers)
@@ -111,8 +171,6 @@
         /// Computing GCD using Euclid's algorithm
         /// </summary>
         /// <param name="delay">Returns milliseconds elapse while method working</param>
-        /// <param name="number1">required argument 1</param>
-        /// <param name="number2">required argument 2</param>
         /// <param name="numbers">optional arguments</param>
         /// <returns>GCD of n numbers</returns>
         public static int Euclid(out long delay, params int[] numbers)
