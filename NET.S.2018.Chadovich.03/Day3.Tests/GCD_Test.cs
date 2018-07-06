@@ -16,7 +16,7 @@ namespace Day3.Tests
         [TestCase(0, 2, ExpectedResult = 2)]
         [TestCase(0, 0, ExpectedResult = 0)]
         [TestCase(-3, 4, ExpectedResult = 1)]
-        [TestCase(-6, -7, ExpectedResult = 1)]
+        [TestCase(-6, -7, ExpectedResult = -1)]
         [TestCase(16, 20, ExpectedResult = 4)]
         [TestCase(16, 20, 28, ExpectedResult = 4)]
         public int Can_Euclid_Of_N_Numbers(params int[] numbers)
@@ -37,7 +37,7 @@ namespace Day3.Tests
         [TestCase(0, 2, ExpectedResult = 2)]
         [TestCase(0, 0, ExpectedResult = 0)]
         [TestCase(-3, 4, ExpectedResult = 1)]
-        [TestCase(-6, -7, ExpectedResult = 1)]
+        [TestCase(-6, -7, ExpectedResult = -1)]
         [TestCase(16, 20, ExpectedResult = 4)]
         [TestCase(16, 20, 28, ExpectedResult = 4)]
         public int Can_Stein_Of_N_Numbers(params int[] numbers)
