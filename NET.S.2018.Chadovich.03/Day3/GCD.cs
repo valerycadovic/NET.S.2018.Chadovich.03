@@ -184,19 +184,6 @@
 
         #region Private Methods
         /// <summary>
-        /// Computes GCD of n numbers
-        /// </summary>
-        /// <param name="numbers">numbers to be handled</param>
-        /// <param name="gcd">searching GCD algorithm</param>
-        /// <returns>GCD of n numbers</returns>
-        private static int Find(int[] numbers, Func<int, int, int> gcd)
-        {
-            int FindGcd(int i, int acc) => i == numbers.Length ? acc : FindGcd(i + 1, gcd(acc, numbers[i]));
-
-            return FindGcd(0, 0);
-        }
-
-        /// <summary>
         /// Search GCD of 2 numbers via Euclid's algorithm
         /// </summary>
         /// <param name="number1">first number</param>
