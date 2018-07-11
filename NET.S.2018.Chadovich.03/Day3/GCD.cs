@@ -17,7 +17,7 @@
         /// <returns>GCD of 2 numbers</returns>
         public static int Euclid(int number1, int number2)
         {
-            return GcdClassic(number1, number2);
+            return Find(GcdClassic, number1, number2);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@
         /// <returns>GCD of 3 numbers</returns>
         public static int Euclid(int number1, int number2, int number3)
         {
-            return GcdClassic(number1, GcdClassic(number2, number3));
+            return Find(GcdClassic, number1, number2, number3);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@
                 throw new ArgumentException($"{nameof(Euclid)}: {nameof(numbers.Length)} must be more than two");
             }
 
-            return Find(numbers, GcdClassic);
+            return Find(GcdClassic, numbers);
         }
 
         /// <summary>
@@ -89,7 +89,7 @@
         /// <returns>GCD of 2 numbers</returns>
         public static int Stein(int number1, int number2)
         {
-            return GcdBinary(number1, number2);
+            return Find(GcdBinary, number1, number2);
         }
 
         /// <summary>
@@ -116,7 +116,7 @@
         /// <returns>GCD of 3 numbers</returns>
         public static int Stein(int number1, int number2, int number3)
         {
-            return GcdBinary(number1, GcdBinary(number2, number3));
+            return Find(GcdClassic, number1, number2, number3);
         }
 
         /// <summary>
@@ -150,7 +150,7 @@
                 throw new ArgumentException($"{nameof(Euclid)}: {nameof(numbers.Length)} must be more than two");
             }
 
-            return Find(numbers, GcdBinary);
+            return Find(GcdBinary, numbers);
         }
         
         /// <summary>
@@ -189,13 +189,30 @@
 -       /// <param name="numbers">numbers to be handled</param>
 -       /// <param name="gcd">searching GCD algorithm</param>
 -       /// <returns>GCD of n numbers</returns>
--       private static int Find(int[] numbers, Func<int, int, int> gcd)
+-       private static int Find(Func<int, int, int> gcd, params int[] numbers)
 -       {
 -           int FindGcd(int i, int acc) => i == numbers.Length ? acc : FindGcd(i + 1, gcd(acc, numbers[i]));
 -
 -           return FindGcd(0, 0);
 -       }
             
+        /// <summary>
+-       /// Computes GCD of 2 numbers
+-       /// </summary>
+-       /// <param name="numbers">numbers to be handled</param>
+-       /// <param name="gcd">searching GCD algorithm</param>
+-       /// <returns>GCD of 2 numbers</returns>
+-       private static int Find(Func<int, int, int> gcd, int number1, int number2) => gcd(number1, number2);
+        
+        /// <summary>
+-       /// Computes GCD of 3 numbers
+-       /// </summary>
+-       /// <param name="numbers">numbers to be handled</param>
+-       /// <param name="gcd">searching GCD algorithm</param>
+-       /// <returns>GCD of 3 numbers</returns>
+-       private static int Find(Func<int, int, int> gcd, int number1, int number2, int number3) 
+            => gcd(number1, gcd(number2, number3));
+        
         /// <summary>
         /// Search GCD of 2 numbers via Euclid's algorithm
         /// </summary>
